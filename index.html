@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StravaBeats | Connect Your Workouts with Your Music</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #212529;
+            line-height: 1.6;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #FC5200, #EB3460);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo svg {
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+        
+        nav a:hover {
+            opacity: 0.8;
+        }
+        
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #1DB954;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 0 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .cta-button.secondary {
+            background-color: white;
+            color: #212529;
+            border: 1px solid #dee2e6;
+        }
+        
+        .features {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-heading h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-heading p {
+            color: #6c757d;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #FC5200;
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: #FC5200;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .step h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .platforms {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .platform-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .platform-logo {
+            flex: 0 0 auto;
+            max-width: 150px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: filter 0.2s, opacity 0.2s;
+        }
+        
+        .platform-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+        }
+        
+        .platform-logo img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .coming-soon {
+            position: relative;
+        }
+        
+        .coming-soon::after {
+            content: 'Coming Soon';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #6c757d;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .faq {
+            padding: 5rem 0;
+            background-color: #f8f9fa;
+        }
+        
+        .accordion {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+        
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .accordion-header {
+            background-color: white;
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .accordion-body {
+            padding: 0 1.5rem 1.5rem;
+            color: #6c757d;
+        }
+        
+        footer {
+            padding: 3rem 0;
+            background-color: #212529;
+            color: white;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-links li {
+            margin: 0 1rem;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .platform-logos {
+                flex-wrap: wrap;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.53 15.83L16 16.35C15.57 16.78 14.8 16.78 14.37 16.35L12.53 14.51C12.29 14.27 12.15 13.94 12.15 13.6V8C12.15 7.45 12.6 7 13.15 7H14.15C14.7 7 15.15 7.45 15.15 8V13.18L16.53 14.56C16.96 14.99 16.96 15.4 16.53 15.83Z" fill="white"/>
+                    </svg>
+                    StravaBeats
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#how-it-works">How It Works</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#" class="cta-button">Sign Up</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Share Your Workout Soundtrack with the World</h1>
+            <p>Automatically add your Spotify playlists and recently played tracks to your Strava activities. Let your followers discover the music that powers your best performances.</p>
+            <div>
+                <a href="#" class="cta-button">Connect with Strava</a>
+                <a href="#" class="cta-button secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Features</h2>
+                <p>Enhance your Strava feed with the power of music</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 3V13.55C11.41 13.21 10.73 13 10 13C7.79 13 6 14.79 6 17C6 19.21 7.79 21 10 21C12.21 21 14 19.21 14 17V7H18V3H12Z" fill="#FC5200"/>
+                        </svg>
+                    </div>
+                    <h3>Sync Your Music</h3>
+                    <p>Automatically detect what music you listened to during your workout and add it to your Strava activity.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 16.5L7.5 12H10.5V7.5H13.5V12H16.5L12 16.5Z" fill="#FC5200"/>
+                        </svg>
+                    </div>
+                    <h3>Share Your Beats</h3>
+                    <p>Display your workout playlist directly in your Strava feed for followers to see and discover new music.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 16.08C17.24 16.08 16.56 16.38 16.04 16.85L8.91 12.7C8.96 12.47 9 12.24 9 12C9 11.76 8.96 11.53 8.91 11.3L15.96 7.19C16.5 7.69 17.21 8 18 8C19.66 8 21 6.66 21 5C21 3.34 19.66 2 18 2C16.34 2 15 3.34 15 5C15 5.24 15.04 5.47 15.09 5.7L8.04 9.81C7.5 9.31 6.79 9 6 9C4.34 9 3 10.34 3 12C3 13.66 4.34 15 6 15C6.79 15 7.5 14.69 8.04 14.19L15.16 18.35C15.11 18.56 15.08 18.78 15.08 19C15.08 20.61 16.39 21.92 18 21.92C19.61 21.92 20.92 20.61 20.92 19C20.92 17.39 19.61 16.08 18 16.08Z" fill="#FC5200"/>
+                        </svg>
+                    </div>
+                    <h3>Discover New Music</h3>
+                    <p>See what others are listening to during their workouts and explore their playlists directly from Strava.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-heading">
+                <h2>How It Works</h2>
+                <p>Connect your accounts in just a few simple steps</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Connect Strava</h3>
+                    <p>Link your Strava account to authorize access to your activities.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Connect Spotify</h3>
+                    <p>Link your Spotify account to access your listening history.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Go for a run</h3>
+                    <p>Listen to music on Spotify while tracking your activity with Strava.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Share your beats</h3>
+                    <p>We'll automatically add your music to your Strava activity description.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="platforms">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Supported Platforms</h2>
+                <p>Connecting with your favorite fitness and music services</p>
+            </div>
+            <div class="platform-logos">
+                <div class="platform-logo">
+                    <svg width="120" height="36" viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.73 20.42L9.52 13.13C9.52 13.13 9.4 13.02 9.25 13.02C9.06 13.02 8.9 13.22 8.9 13.22L4.06 20.42C4.06 20.42 3.99 20.56 3.99 20.67C3.99 20.9 4.18 21.05 4.4 21.05C4.5 21.05 4.62 21 4.7 20.89L9.22 14.13L17.09 21.01C17.09 21.01 17.21 21.05 17.3 21.05C17.52 21.05 17.7 20.89 17.7 20.67C17.73 20.57 17.73 20.42 17.73 20.42Z" fill="#FC5200"/>
+                        <path d="M25.21 13.13L17 20.42C17 20.42 16.89 20.57 16.89 20.67C16.89 20.9 17.07 21.05 17.3 21.05C17.4 21.05 17.51 21 17.6 20.89L25.48 14.13C25.48 14.13 25.61 14.01 25.61 13.9C25.61 13.67 25.42 13.51 25.2 13.51C25.21 13.51 25.21 13.13 25.21 13.13Z" fill="#FC5200"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M33.56 15.3H36.21V23.83H33.56V15.3ZM32.67 11.38C32.67 10.4 33.48 9.6 34.47 9.6C35.46 9.6 36.26 10.4 36.26 11.38C36.26 12.37 35.46 13.17 34.47 13.17C33.48 13.17 32.67 12.37 32.67 11.38Z" fill="#666666"/>
+                        <path d="M40.13 9.9H42.77V15.45L46.71 15.3V17.86H42.77V23.83H40.13V9.9Z" fill="#666666"/>
+                        <path d="M52.51 15.11C55.32 15.11 57.6 17.39 57.6 20.2C57.6 23 55.32 25.28 52.51 25.28C49.71 25.28 47.43 23 47.43 20.2C47.43 17.39 49.71 15.11 52.51 15.11ZM52.51 17.71C51.19 17.71 50.12 18.78 50.12 20.1C50.12 21.41 51.19 22.49 52.51 22.49C53.82 22.49 54.9 21.41 54.9 20.1C54.9 18.78 53.82 17.71 52.51 17.71Z" fill="#666666"/>
+                        <path d="M60.47 19.12C60.47 17.11 62.1 15.3 64.24 15.3H65.53V17.96H64.34C63.73 17.96 63.16 18.39 63.16 19.22V23.83H60.47V19.12Z" fill="#666666"/>
+                        <path d="M68.17 18.96C68.17 16.82 69.98 15.2 71.99 15.2H77.66V23.73H74.97V17.86H72.18C71.35 17.86 70.92 18.43 70.92 19.03V23.83H68.17V18.96Z" fill="#666666"/>
+                        <path d="M78.78 15.3H81.42V20.21C81.42 21.52 82.5 22.6 83.81 22.6C85.13 22.6 86.2 21.52 86.2 20.21V15.3H88.85V20.2C88.85 23.01 86.56 25.29 83.76 25.29C80.95 25.29 78.67 23.01 78.67 20.2L78.78 15.3Z" fill="#666666"/>
+                    </svg>
+                </div>
+                <div class="platform-logo">
+                    <svg width="120" height="36" viewBox="0 0 120 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 9C12.48 9 8 13.48 8 19C8 24.52 12.48 29 18 29C23.52 29 28 24.52 28 19C28 13.48 23.52 9 18 9ZM22.19 23.52C21.74 23.52 21.48 23.26 21.03 23C19.54 22.03 17.67 21.42 15.58 21.42C14.22 21.42 12.85 21.68 11.62 22.03C11.39 22.1 11.1 22.19 10.94 22.19C10.29 22.19 9.81 21.65 9.81 21.06C9.81 20.42 10.23 20 10.87 19.84C12.42 19.39 14.09 19.13 15.84 19.13C18.39 19.13 20.65 19.9 22.52 21.1C22.77 21.29 23.03 21.52 23.03 22.03C22.97 22.97 22.58 23.52 22.19 23.52ZM23.55 20.33C23 20.33 22.71 20.13 22.32 19.87C20.58 18.71 18.19 18 15.52 18C13.97 18 12.52 18.26 11.39 18.65C11.13 18.71 10.81 18.84 10.61 18.84C9.87 18.84 9.29 18.26 9.29 17.52C9.29 16.77 9.74 16.26 10.35 16.06C11.77 15.61 13.45 15.29 15.58 15.29C18.68 15.29 21.58 16.13 23.68 17.58C24.06 17.84 24.32 18.13 24.32 18.77C24.26 19.68 23.94 20.33 23.55 20.33ZM25.16 16.9C24.52 16.9 24.19 16.65 23.68 16.32C21.68 15.03 18.77 14.19 15.58 14.19C13.84 14.19 12.23 14.39 10.81 14.84C10.55 14.9 10.29 15.03 10.03 15.03C9.16 15.03 8.48 14.32 8.48 13.45C8.48 12.58 9 11.94 9.74 11.74C11.52 11.23 13.42 10.9 15.65 10.9C19.26 10.9 22.77 11.81 25.29 13.52C25.74 13.84 26 14.19 26 14.97C25.94 16.06 25.61 16.9 25.16 16.9Z" fill="#1DB954"/>
+                        <path d="M37.54 21.35C37.54 21.68 37.29 21.94 36.94 21.94H35.77C35.42 21.94 35.16 21.68 35.16 21.35V15.19H34.06C33.71 15.19 33.45 14.94 33.45 14.61V13.68C33.45 13.35 33.71 13.1 34.06 13.1H35.16V11.19C35.16 10.87 35.42 10.61 35.77 10.61H36.94C37.29 10.61 37.54 10.87 37.54 11.19V13.1H39.8C40.15 13.1 40.41 13.35 40.41 13.68V14.61C40.41 14.94 40.15 15.19 39.8 15.19H37.54V21.35ZM47.57 21.35C47.57 21.68 47.32 21.94 46.97 21.94H45.8C45.45 21.94 45.19 21.68 45.19 21.35V16.13C45.19 15.06 44.45 14.26 43.42 14.26C42.32 14.26 41.64 15.06 41.64 16.13V21.35C41.64 21.68 41.38 21.94 41.03 21.94H39.86C39.51 21.94 39.25 21.68 39.25 21.35V13.68C39.25 13.35 39.51 13.1 39.86 13.1H41.03C41.38 13.1 41.64 13.35 41.64 13.68V14.03C42.12 13.35 42.93 12.94 43.93 12.94C45.74 12.94 47.57 14.45 47.57 16.9V21.35ZM50.9 11.94C50.9 12.65 50.32 13.23 49.64 13.23C48.93 13.23 48.38 12.65 48.38 11.94C48.38 11.23 48.96 10.65 49.64 10.65C50.35 10.65 50.9 11.26 50.9 11.94ZM50.48 21.35C50.48 21.68 50.22 21.94 49.87 21.94H48.7C48.35 21.94 48.09 21.68 48.09 21.35V13.68C48.09 13.35 48.35 13.1 48.7 13.1H49.87C50.22 13.1 50.48 13.35 50.48 13.68V21.35ZM58.38 18.77H53.93C54.09 19.81 54.83 20.55 55.93 20.55C56.61 20.55 57.06 20.35 57.48 19.97C57.67 19.77 57.8 19.71 58.03 19.71H59.12C59.51 19.71 59.8 20 59.77 20.39C59.38 21.55 57.99 22.29 55.93 22.29C53.35 22.29 51.48 20.39 51.48 17.84C51.48 15.29 53.35 13.42 55.9 13.42C58.42 13.42 60.16 15.29 60.16 17.84C60.16 18.19 60.12 18.55 60.09 18.71C60 18.77 59.7 18.77 58.38 18.77ZM55.93 15.13C54.93 15.13 54.22 15.77 53.99 16.77H57.8C57.61 15.81 56.87 15.13 55.93 15.13ZM67.09 21.35C67.09 21.68 66.84 21.94 66.48 21.94H65.31C64.96 21.94 64.7 21.68 64.7 21.35V16.13C64.7 15.06 63.96 14.26 62.93 14.26C61.83 14.26 61.15 15.06 61.15 16.13V21.35C61.15 21.68 60.9 21.94 60.54 21.94H59.38C59.02 21.94 58.77 21.68 58.77 21.35V13.68C58.77 13.35 59.02 13.1 59.38 13.1H60.54C60.9 13.1 61.15 13.35 61.15 13.68V14.03C61.64 13.35 62.44 12.94 63.44 12.94C65.25 12.94 67.09 14.45 67.09 16.9V21.35ZM73.53 21.94H69.21C68.4 21.94 67.76 21.26 67.76 20.48V15.16H66.66C66.31 15.16 66.05 14.9 66.05 14.55V13.68C66.05 13.32 66.31 13.06 66.66 13.06H67.76V11.03C67.76 10.68 68.02 10.42 68

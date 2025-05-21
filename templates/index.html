@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify Strava Mashup - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Spotify Strava Mashup!</h1>
+        <p>This application combines your Spotify listening history with your Strava activities.</p>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a> | 
+            <a href="{{ url_for('update_activity') }}">Update Activity Page</a>
+        </nav>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        <div class="connection-status">
+            {% if not spotify_connected %}
+                <form action="{{ url_for('login_spotify') }}" method="GET">
+                    <button type="submit">Connect to Spotify</button>
+                </form>
+            {% else %}
+                <p>Spotify: <span class="status-connected">Connected</span> 
+                    <button onclick="location.href='{{ url_for('logout_spotify') }}'" type="button" class="disconnect-button">Disconnect Spotify</button>
+                </p>
+            {% endif %}
+
+            {% if not strava_connected %}
+                <form action="{{ url_for('login_strava') }}" method="GET">
+                    <button type="submit">Connect to Strava</button>
+                </form>
+            {% else %}
+                <p>Strava: <span class="status-connected">Connected</span> 
+                    <button onclick="location.href='{{ url_for('logout_strava') }}'" type="button" class="disconnect-button">Disconnect Strava</button>
+                </p>
+            {% endif %}
+        </div>
+        
+        {% if spotify_connected and strava_connected %}
+            <p><a href="{{ url_for('update_activity') }}" class="button-link update-button">Go to Update Page</a></p>
+        {% else %}
+            <p>Connect both services to proceed to the update page.</p>
+        {% endif %}
+
+    </div>
+</body>
+</html>

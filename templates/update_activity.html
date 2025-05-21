@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Strava Activity - Spotify Strava Mashup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Update Strava Activity</h1>
+
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a> | 
+            <a href="{{ url_for('update_activity') }}">Update Activity Page</a>
+        </nav>
+
+        <div class="connection-status">
+            <h2>Connection Status:</h2>
+            <p>
+                Spotify: 
+                {% if spotify_connected %}
+                    <span class="status-connected">Connected</span>
+                {% else %}
+                    <span class="status-not-connected">Not Connected</span> (<a href="{{ url_for('index') }}">Connect on Home Page</a>)
+                {% endif %}
+            </p>
+            <p>
+                Strava: 
+                {% if strava_connected %}
+                    <span class="status-connected">Connected</span>
+                {% else %}
+                    <span class="status-not-connected">Not Connected</span> (<a href="{{ url_for('index') }}">Connect on Home Page</a>)
+                {% endif %}
+            </p>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <ul class="flashes">
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+
+        {% if spotify_connected and strava_connected %}
+            <form action="{{ url_for('run_update') }}" method="POST">
+                <button type="submit" class="update-button">Update Latest Strava Activity</button>
+            </form>
+        {% else %}
+            <p>Please connect both Spotify and Strava on the <a href="{{ url_for('index') }}">Home Page</a> to use this feature.</p>
+        {% endif %}
+    
+        <p><a href="{{ url_for('index') }}" class="button-link">Back to Home</a></p>
+    </div>
+</body>
+</html>

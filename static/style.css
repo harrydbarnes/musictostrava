@@ -1,0 +1,124 @@
+/* Basic Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Header/Navigation (simple) */
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #007bff;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button, .button-link {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none; /* For .button-link */
+    display: inline-block; /* For .button-link */
+    margin-top: 10px;
+}
+
+button:hover, .button-link:hover {
+    background-color: #0056b3;
+}
+
+/* Connection Status Messages */
+.status-connected {
+    color: green;
+    font-weight: bold;
+}
+
+.status-not-connected {
+    color: red;
+    font-weight: bold;
+}
+
+.connection-status p {
+    padding: 5px 0;
+}
+
+/* Flash Messages */
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.flashes li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.flashes li.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.flashes li.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.flashes li.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* Forms */
+form {
+    margin-bottom: 15px;
+}
+
+/* Links that look like buttons but are for navigation */
+.disconnect-button {
+    background-color: #dc3545; /* Red for disconnect */
+}
+.disconnect-button:hover {
+    background-color: #c82333;
+}
+
+.update-button {
+    background-color: #28a745; /* Green for update */
+}
+.update-button:hover {
+    background-color: #218838;
+}
